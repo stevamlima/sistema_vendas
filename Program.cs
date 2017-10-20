@@ -69,13 +69,14 @@ namespace sistema_vendas
 
                     }while(cpfvalido != true);
 
-                    Console.WriteLine("Cliente cadastrado com sucesso");
                     StreamWriter sa = new StreamWriter("C:\\Users\\FIC\\Desktop\\CadastroDeCliente.txt", true);
-                    sa.WriteLine("Nome: "+nome);
-                    sa.WriteLine("E-mail: "+email);
-                    sa.WriteLine("CPF: "+cpf);
+                    sa.Write(nome+";");
+                    sa.Write(email+";");
+                    sa.Write(cpf+";");
                     sa.WriteLine("");
                     sa.Close();
+                    Console.Clear();
+                    Console.WriteLine("\nCliente cadastrado com sucesso\n");
                     break;
                 }
                 case "2":
@@ -88,10 +89,8 @@ namespace sistema_vendas
 
         //Cadastrar Novo Produto
         static void CadastrarProduto(){
-            Console.WriteLine("\n================================================");
-            Console.WriteLine("\nCadastro de Produtos");
-            Console.WriteLine("\nDigite");
-            Console.Write("Código do produto: ");
+            Console.WriteLine("Cadastro de Produtos");
+            Console.Write("\nCódigo do produto: ");
             string digite = Console.ReadLine();
             Console.Write("Nome do produto: ");
             string digite1 = Console.ReadLine();
@@ -101,19 +100,39 @@ namespace sistema_vendas
             string digite3 = Console.ReadLine();
 
             StreamWriter sw = new StreamWriter("C:\\Users\\FIC\\Desktop\\CadastroDeProdutos.txt", true);
-            sw.WriteLine("Código do produto: "+digite);
-            sw.WriteLine("Nome do produto: "+digite1);
-            sw.WriteLine("Descrição do produto: "+digite2);
-            sw.WriteLine("Preço do produto: "+digite3);
+            sw.Write(digite+";");
+            sw.Write(digite1+";");
+            sw.Write(digite2+";");
+            sw.Write(digite3+";");
             sw.WriteLine("");
             sw.Close();
-            Console.WriteLine("Produto cadastrado com sucesso");
+            Console.Clear();
+            Console.WriteLine("\nProduto cadastrado com sucesso\n");
+            
 
         }
 
         //Realizar Venda
-        static void RealizarVenda(){
-
+        static void RealizarVenda()
+        {
+            Console.WriteLine("Realização de vendas");
+            Console.Write("\nDigite seu CPF:");
+            string cpf = Console.ReadLine();
+            string[] linhas = File.ReadAllLines("C:\\Users\\FIC\\Desktop\\CadastroDeCliente.txt");
+            foreach(string linha in linhas)
+            {
+                if(linha.Contains(cpf) == true)
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nDados do cliente: |"+linha+"|");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nUsuário não encontrado");
+                    break;
+                }
+            }
         }
 
         //Extrato do cliente
