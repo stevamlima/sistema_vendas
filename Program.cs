@@ -23,15 +23,19 @@ namespace sistema_vendas
 
                 switch(opcao){
                     case "1":
+                        Console.Clear();
                         CadastrarCliente();
                         break;
                     case "2":
+                        Console.Clear();
                         CadastrarProduto();
                         break;
                     case "3":
+                        Console.Clear();
                         RealizarVenda();
                         break;
                     case "4":
+                        Console.Clear();
                         ExtratoCliente();
                         break;
                 }
@@ -88,7 +92,8 @@ namespace sistema_vendas
         }
 
         //Cadastrar Novo Produto
-        static void CadastrarProduto(){
+        static void CadastrarProduto()
+        {
             Console.WriteLine("Cadastro de Produtos");
             Console.Write("\nCódigo do produto: ");
             string digite = Console.ReadLine();
@@ -108,7 +113,6 @@ namespace sistema_vendas
             sw.Close();
             Console.Clear();
             Console.WriteLine("\nProduto cadastrado com sucesso\n");
-            
 
         }
 
@@ -119,6 +123,7 @@ namespace sistema_vendas
             Console.Write("\nDigite seu CPF:");
             string cpf = Console.ReadLine();
             string[] linhas = File.ReadAllLines("C:\\Users\\FIC\\Desktop\\CadastroDeCliente.txt");
+            string[] linhas2 = File.ReadAllLines("C:\\Users\\FIC\\Desktop\\CadastroDeProdutos.txt");
             foreach(string linha in linhas)
             {
                 if(linha.Contains(cpf) == true)
@@ -133,17 +138,30 @@ namespace sistema_vendas
                     break;
                 }
             }
+            foreach(string linha2 in linhas2)
+                    {
+                        if(linha2.Contains(cpf) == true)
+                        {
+                        Console.Clear();
+                        Console.WriteLine("\nProdutos cadastrados: |"+linha2+"|");
+                        }
+                    }
         }
 
         //Extrato do cliente
-        static void ExtratoCliente(){
+        static void ExtratoCliente()
+        {
+            Console.WriteLine("Extrato do Cliente");
+            Console.Write("\nDigite seu CPF:");
+            string cpf = Console.ReadLine();
+            string[] linhas = File.ReadAllLines("C:\\Users\\FIC\\Desktop\\CadastroDeCliente.txt");
+            foreach(string linha in linhas);
 
         }
 
         //Metodo para validar o cpf passado 
-        static bool ValidaCpf(string cpf){
-            bool cpfvalido = false;
-
+        static bool ValidaCpf(string cpf)
+        {
             if(cpf.Length != 11)
             {
                 return false;
